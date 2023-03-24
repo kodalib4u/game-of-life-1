@@ -1,16 +1,14 @@
-node {
-   stage ('Sourcecode'){
-     git 'https://github.com/kodalib4u/game-of-life-1.git'
-   }
-   
-
-  stage('Build the code'){
-    sh 'mvn clean package'
-  }
-
-  stage('Archiving and Test Results') {
-                junit '**/surefire-reports/*.xml'
-                archiveArtifacts artifacts: '**/*.war', followSymlinks: false
+pipeline {
+    agent any
+    options {
+        // Timeout counter starts AFTER agent is allocated
+        timeout(time: 1, unit: 'SECONDS')
+    }
+    stages {
+        stage('Example') {
+            steps {
+                echo 'Hello World'
+            }
         }
-
+    }
 }
